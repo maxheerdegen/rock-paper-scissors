@@ -6,7 +6,6 @@ function getComputerChoice() {
     let ChoiceNumber = Math.floor(Math.random() * 3);
     switch (ChoiceNumber) {
         case 0:
-            console.log("ok");
             return "rock";
             break;
         case 1:
@@ -15,6 +14,26 @@ function getComputerChoice() {
         case 2:
             return "scissors";
             break;
+    }
+}
+
+function playSingleRound(computerSelection, playerSelection) {
+    if (
+        computerSelection === "rock" && playerSelection === "paper" ||
+        computerSelection === "paper" && playerSelection === "scissors" ||
+        computerSelection === "scissors" && playerSelection === "rock" 
+    ){
+        return "Player wins"
+    }
+    if (
+        computerSelection === "rock" && playerSelection === "scissors" ||
+        computerSelection === "paper" && playerSelection === "rock" ||
+        computerSelection === "scissors" && playerSelection === "paper" 
+    ){
+        return "Computer wins"
+    }
+    else {
+        return "It's a draw."
     }
 }
 
@@ -30,5 +49,8 @@ function getComputerChoice() {
         //OUTPUR Draw
 
 const computerSelection = getComputerChoice();
+const playerSelection = prompt("rock, paper or scissors?").toLowerCase();
+console.log(playerSelection);
 console.log(computerSelection);
+console.log(playSingleRound(computerSelection, playerSelection));
 
