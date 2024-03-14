@@ -49,7 +49,21 @@ function playSingleRound(computerSelection, playerSelection) {
         //OUTPUR Draw
 
 const computerSelection = getComputerChoice();
-const playerSelection = prompt("rock, paper or scissors?").toLowerCase();
+let playerSelection;
+while (true) {
+    playerSelection = prompt("rock, paper or scissors?").toLowerCase();
+    if (
+        playerSelection === "rock" ||
+        playerSelection === "paper" ||
+        playerSelection === "scissors"
+    ) {
+        break;
+    }
+    else {
+        console.log("Wrong selection");
+    }
+}
+
 console.log(playerSelection);
 console.log(computerSelection);
 console.log(playSingleRound(computerSelection, playerSelection));
