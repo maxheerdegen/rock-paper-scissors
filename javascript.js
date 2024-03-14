@@ -17,54 +17,75 @@ function getComputerChoice() {
     }
 }
 
-function playSingleRound(computerSelection, playerSelection) {
+function playSingleRound() {
+    let playerSelection;
+    let computerSelection = getComputerChoice();
+    //GET player selection; test if it's rock, paper or scissors otherwise ask again; selection case insensitive
+    while (true) {
+        playerSelection = prompt("rock, paper or scissors?").toLowerCase();
+        if (
+            playerSelection === "rock" ||
+            playerSelection === "paper" ||
+            playerSelection === "scissors"
+        ) {
+            break;
+        }
+        else {
+            console.log("Wrong selection");
+        }
+    }
+    //DETERMINE winner of that round
     if (
         computerSelection === "rock" && playerSelection === "paper" ||
         computerSelection === "paper" && playerSelection === "scissors" ||
         computerSelection === "scissors" && playerSelection === "rock" 
     ){
-        return "Player wins"
+        return "player"
     }
-    if (
+    else if (
         computerSelection === "rock" && playerSelection === "scissors" ||
         computerSelection === "paper" && playerSelection === "rock" ||
         computerSelection === "scissors" && playerSelection === "paper" 
     ){
-        return "Computer wins"
+        return "computer"
     }
     else {
-        return "It's a draw."
+        return "draw"
     }
 }
 
-//GET User Selection, case insensitive 
-
-//DETERMINE winner
-    //CASE playerSelection OF
-    //1: playerSelection beats ComputerSelection
-        //OUTPUT Player wins
-    //2: computerSelection beats playerSelection
-        //OUTPUT Computer wins
-    //3: playerSelection equals computerSelection
-        //OUTPUR Draw
-
-const computerSelection = getComputerChoice();
-let playerSelection;
-while (true) {
-    playerSelection = prompt("rock, paper or scissors?").toLowerCase();
-    if (
-        playerSelection === "rock" ||
-        playerSelection === "paper" ||
-        playerSelection === "scissors"
-    ) {
-        break;
+function determineWinner(computerCounter, playerCounter) {
+    if (computerCounter > playerCounter) {
+        console.log(`Computer wins game. ${computerCounter}:${playerCounter}`);
+    }
+    else if (computerCounter < playerCounter) {
+        console.log(`Player wins game. ${playerCounter}:${computerCounter}`);
     }
     else {
-        console.log("Wrong selection");
+        console.log(`Noone wins the game. ${playerCounter}:${computerCounter}`);
     }
 }
 
-console.log(playerSelection);
-console.log(computerSelection);
-console.log(playSingleRound(computerSelection, playerSelection));
+function playGame() {
+    let whoWins;
+    let computerCounter = 0;
+    let playerCounter = 0;
+    for (let round = 1; round <= 5; round++){
+        whoWins = playSingleRound();
+        if (whoWins === "computer") {
+            console.log(`Round ${round} wins computer.`)
+            computerCounter++;
+        }
+        if (whoWins === "player") {
+            console.log(`Round ${round} wins player.`);
+            playerCounter++;
+        }
+        if (whoWins === "draw") {
+            console.log(`Round ${round} is a draw.`);
+        }
+    }
+    determineWinner(computerCounter, playerCounter);
+}
+
+playGame();
 
