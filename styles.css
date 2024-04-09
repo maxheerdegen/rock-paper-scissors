@@ -24,7 +24,7 @@ body {
     font-size: 30px;
     font-weight: bold;
 }
-.container {
+.choices {
     display: flex;
     font-size: 150px;
     gap: 20px;

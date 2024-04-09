@@ -17,40 +17,25 @@ function getComputerChoice() {
     }
 }
 
-function playSingleRound() {
-    let playerSelection;
+function playSingleRound(playerSelection) {
     let computerSelection = getComputerChoice();
-    //GET player selection; test if it's rock, paper or scissors otherwise ask again; selection case insensitive
-    while (true) {
-        playerSelection = prompt("rock, paper or scissors?").toLowerCase();
-        if (
-            playerSelection === "rock" ||
-            playerSelection === "paper" ||
-            playerSelection === "scissors"
-        ) {
-            break;
-        }
-        else {
-            console.log("Wrong selection");
-        }
-    }
-    //DETERMINE winner of that round
+
     if (
         computerSelection === "rock" && playerSelection === "paper" ||
         computerSelection === "paper" && playerSelection === "scissors" ||
         computerSelection === "scissors" && playerSelection === "rock" 
     ){
-        return "player"
+        console.log("player");
     }
     else if (
         computerSelection === "rock" && playerSelection === "scissors" ||
         computerSelection === "paper" && playerSelection === "rock" ||
         computerSelection === "scissors" && playerSelection === "paper" 
     ){
-        return "computer"
+        console.log("computer");
     }
     else {
-        return "draw"
+        console.log("draw");
     }
 }
 
@@ -87,4 +72,10 @@ function playGame() {
     determineWinner(computerCounter, playerCounter);
 }
 
+const choices = document.querySelector(".choices");
+
+choices.addEventListener("click", (event) => {
+    console.log(event.target.className);
+    playSingleRound(event.target.className);
+})
 
