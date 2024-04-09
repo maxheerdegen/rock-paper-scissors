@@ -87,5 +87,4 @@ function playGame() {
     determineWinner(computerCounter, playerCounter);
 }
 
-playGame();
 
