@@ -25,54 +25,28 @@ function playSingleRound(playerSelection) {
         computerSelection === "paper" && playerSelection === "scissors" ||
         computerSelection === "scissors" && playerSelection === "rock" 
     ){
-        console.log("player");
+        message.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. You win!`
     }
     else if (
         computerSelection === "rock" && playerSelection === "scissors" ||
         computerSelection === "paper" && playerSelection === "rock" ||
         computerSelection === "scissors" && playerSelection === "paper" 
     ){
-        console.log("computer");
+        message.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. Computer wins!`
     }
     else {
-        console.log("draw");
+        message.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. Draw!`
     }
+
+    result.appendChild(message);
 }
 
-function determineWinner(computerCounter, playerCounter) {
-    if (computerCounter > playerCounter) {
-        console.log(`Computer wins game. ${computerCounter}:${playerCounter}`);
-    }
-    else if (computerCounter < playerCounter) {
-        console.log(`Player wins game. ${playerCounter}:${computerCounter}`);
-    }
-    else {
-        console.log(`Noone wins the game. ${playerCounter}:${computerCounter}`);
-    }
-}
-
-function playGame() {
-    let whoWins;
-    let computerCounter = 0;
-    let playerCounter = 0;
-    for (let round = 1; round <= 5; round++){
-        whoWins = playSingleRound();
-        if (whoWins === "computer") {
-            console.log(`Round ${round} wins computer.`)
-            computerCounter++;
-        }
-        if (whoWins === "player") {
-            console.log(`Round ${round} wins player.`);
-            playerCounter++;
-        }
-        if (whoWins === "draw") {
-            console.log(`Round ${round} is a draw.`);
-        }
-    }
-    determineWinner(computerCounter, playerCounter);
-}
 
 const choices = document.querySelector(".choices");
+const result = document.querySelector(".result");
+const score = document.querySelector(".score");
+
+const message = document.createElement("div");
 
 choices.addEventListener("click", (event) => {
     console.log(event.target.className);

@@ -20,10 +20,17 @@ body {
     margin-top: 0;
 }
 
-.question, .score {
+.question, .result {
     font-size: 30px;
     font-weight: bold;
 }
+ .result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+ }
+
 .choices {
     display: flex;
     font-size: 150px;
