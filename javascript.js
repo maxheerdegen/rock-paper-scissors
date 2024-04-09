@@ -25,31 +25,41 @@ function playSingleRound(playerSelection) {
         computerSelection === "paper" && playerSelection === "scissors" ||
         computerSelection === "scissors" && playerSelection === "rock" 
     ){
-        message.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. You win!`
+        roundWinner.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. You win!`
+        return playerScore++;
     }
     else if (
         computerSelection === "rock" && playerSelection === "scissors" ||
         computerSelection === "paper" && playerSelection === "rock" ||
         computerSelection === "scissors" && playerSelection === "paper" 
     ){
-        message.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. Computer wins!`
+        roundWinner.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. Computer wins!`
+        return computerScore++;
     }
     else {
-        message.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. Draw!`
+        roundWinner.textContent = `You chose ${playerSelection}. Computer chose ${computerSelection}. Draw!`
     }
-
-    result.appendChild(message);
 }
 
+let computerScore = 0;
+let playerScore = 0;
 
 const choices = document.querySelector(".choices");
 const result = document.querySelector(".result");
 const score = document.querySelector(".score");
 
-const message = document.createElement("div");
+const roundWinner = document.createElement("div");
+const gameScore = document.createElement("div");
 
 choices.addEventListener("click", (event) => {
     console.log(event.target.className);
     playSingleRound(event.target.className);
+
+    result.appendChild(roundWinner);
+
+    gameScore.textContent = `Player ${playerScore}:${computerScore} Computer`;
+    result.appendChild(gameScore);
 })
+
+
 
