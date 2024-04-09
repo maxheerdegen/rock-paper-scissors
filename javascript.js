@@ -1,7 +1,3 @@
-//Computer selects rock, paper or scissors
-    //CALL math.random to get a random number bewteen 0-2
-    //TRANSLATE number to rock, paper or scissors
-
 function getComputerChoice() {
     let ChoiceNumber = Math.floor(Math.random() * 3);
     switch (ChoiceNumber) {
@@ -15,6 +11,17 @@ function getComputerChoice() {
             return "scissors";
             break;
     }
+}
+
+function eventHandler() {
+    playSingleRound(event.target.className);
+
+    result.appendChild(roundWinner);
+
+    gameScore.textContent = `Player ${playerScore}:${computerScore} Computer`;
+    result.appendChild(gameScore);
+
+    endGame();
 }
 
 function playSingleRound(playerSelection) {
@@ -41,6 +48,22 @@ function playSingleRound(playerSelection) {
     }
 }
 
+function endGame() {
+    if (computerScore === 5 || playerScore === 5) {
+        choices.removeEventListener("click", eventHandler);
+    
+        if (computerScore === 5) {
+            gameEnd.textContent = "Game over. Computer wins the game.";
+        }
+    
+        else if (playerScore === 5) {
+            gameEnd.textContent = "Game over. You win the game.";
+        }
+    
+        result.appendChild(gameEnd);
+    }
+}
+
 let computerScore = 0;
 let playerScore = 0;
 
@@ -50,16 +73,9 @@ const score = document.querySelector(".score");
 
 const roundWinner = document.createElement("div");
 const gameScore = document.createElement("div");
+const gameEnd = document.createElement("div");
 
-choices.addEventListener("click", (event) => {
-    console.log(event.target.className);
-    playSingleRound(event.target.className);
-
-    result.appendChild(roundWinner);
-
-    gameScore.textContent = `Player ${playerScore}:${computerScore} Computer`;
-    result.appendChild(gameScore);
-})
+choices.addEventListener("click", eventHandler);
 
 
 
